@@ -1,0 +1,7 @@
+#BE0000
+
+todo1
+1. navbar creation Done
+2. footer creation Done
+3. hero section Done
+4. home page
