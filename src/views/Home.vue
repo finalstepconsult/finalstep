@@ -4,6 +4,9 @@
     <!--ServiceSection /-->
     <AboutSection />
     <UniqueSection />
+    <ServiceHome />
+    <BlogMarquee />
+    <FAQ />
     
   </div>
 </template>
@@ -13,6 +16,10 @@ import HeroSection from '@/components/homeComponent/HeroSection.vue'
 //import ServiceSection from '@/components/homeComponent/ServiceSection.vue'
 import AboutSection from '@/components/homeComponent/AboutSection.vue'
 import UniqueSection from '@/components/homeComponent/UniqueSection.vue'
+import ServiceHome from '@/components/homeComponent/ServiceHome.vue'
+import BlogMarquee from '@/components/homeComponent/BlogMarquee.vue'
+import FAQ from '@/components/homeComponent/FAQ.vue'
+
 export default {
   name: "Home",
   components: {
@@ -20,6 +27,9 @@ export default {
     //ServiceSection,
     AboutSection,
     UniqueSection,
+    ServiceHome,
+    BlogMarquee,
+    FAQ,
   },
 };
 </script>

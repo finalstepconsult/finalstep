@@ -7,10 +7,12 @@ import AOS from "aos"
 import "aos/dist/aos.css"
 import VueParticles from 'vue-particles'
 
+
 //import * as VueAos from 'vue-aos'
 
 Vue.use(Vue2Editor);
 Vue.use(VueParticles)
+
 
 Vue.config.productionTip = false;
 

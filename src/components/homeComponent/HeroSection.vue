@@ -83,7 +83,7 @@ export default {
     &--button{
         border: 1px solid $primaryColor;
         border-radius: 50px;
-        padding: 10px 30px;
+        padding-right: 10px 30px;
         font-family: $buttonCta, serif;
         font-weight: 500;
         @media only screen and (max-width: 600px) {
@@ -110,7 +110,7 @@ export default {
     &--btn{
         font-size: 1.7rem;
         color: $secondaryColor;
-        border-radius: 20px;
+        border-radius: 50px;
         padding: 10px 30px;
         font-family: $buttonCta, serif;
         font-weight: 500;

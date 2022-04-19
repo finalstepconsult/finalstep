@@ -33,22 +33,44 @@ export default {
 @import "@/assets/scss/variable.scss";
   .about__section{
     //border: 2px solid red;
-    padding: 50px;
-    background-color: $defaultWhite;
-    padding-top: 80px !important;
     //width: 700px;
+    @media only screen and (min-width: 600px) and (max-width: 1400px){
+      padding: 50px;
+      background-color: $defaultWhite;
+      padding-top: 80px !important;
+    }
+    @media only screen and (max-width: 600px){
+     // border: 2px solid green;
+      padding: 0 !important;
+    }
 
     .row{
-     // border: 2px solid blue;
       width: 100%;
       margin: 0;
       padding: 0;
+
+      @media only screen and (max-width: 600px){
+       // border: 2px solid blue;
+      }
     }
+    
 
     &--customCol{
-     // border: 2px solid green;
       padding: 0;
       position: relative;
+
+
+      @media only screen and (max-width: 600px){
+        width: 100%;
+        height: 100vh;
+      }
+    }
+
+    &--heroImg{
+      @media only screen and (max-width: 600px){
+        width: 100% !important;
+        height: 100% !important;
+      }
     }
 
 
@@ -60,6 +82,21 @@ export default {
       background-color: darken($primaryColor, 20%);
       color: $defaultWhite;
       padding: 40px;
+
+      @media only screen and (max-width: 600px){
+        //border: 2px solid green;
+        right: 10%;
+        width: 80%;
+        height: 90vh;
+        top: 5%;
+        //background-color: transparent;
+        background: rgba(78, 1, 1, 0.4);
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 3.5px );
+        -webkit-backdrop-filter: blur( 3.5px );
+        border-radius: 10px;
+        //border: 1px solid rgba( 255, 255, 255, 0.18 );
+      }
 
 
       h3{
@@ -77,7 +114,7 @@ export default {
       }
 
       .h{
-          margin-top: 70px !important;
+        margin-top: 70px !important;
       }
     }
 
@@ -89,10 +126,20 @@ export default {
         font-size: 3rem;
         width: 100%;
 
+        @media only screen and (max-width: 600px){
+          margin-top: 40px;
+          font-size: 2.1rem;
+          color: $defaultBlack;
+        }
+
         span{
           color: $primaryColor;
           font-family: $heroText, serif;
           font-size: 3rem;
+
+          @media only screen and (max-width: 600px){
+            font-size: 2.1rem;
+          }
         }
       }
 
@@ -104,6 +151,11 @@ export default {
         opacity: .8;
         letter-spacing: 0.13ch;
         word-spacing: 0.13ch;
+        color: $defaultBlack;
+
+          @media only screen and (max-width: 600px){
+            margin-top: 30px;
+          }
       }
     }
 
@@ -114,25 +166,36 @@ export default {
       padding:20px 20px;
       width: 300px;
       margin-top: 50px;
+      border-radius: 50px;
+
+      @media only screen and (max-width: 600px){
+        margin-top: 30px;
+        padding:10px 10px;
+        margin-left: 15px;
+      }
 
 
       &:hover{
         background-color: $primaryColor;
         color: $secondaryColor;
-              font-size: 1.5rem;
+        font-size: 1.5rem;
       }
     }
 
   }
 
   #color-overlay {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 30rem;
-   height: 100%;
-  // background-color: black;
-  background:linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3));
-   opacity: 0.6;
-}
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30rem;
+    height: 100%;
+    // background-color: black;
+    background:linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3));
+    opacity: 0.6;
+
+    @media only screen and (max-width: 600px){
+      width: 100%;
+    }
+  }
 </style>

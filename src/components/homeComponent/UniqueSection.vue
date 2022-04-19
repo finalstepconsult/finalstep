@@ -6,27 +6,34 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
               <h2 class="unique__section--heroText">
-                  What makes us <span>Unique</span> ?
+                  What makes us <span>Unique</span>
               </h2>
               <div class="unique__section--body">
                   <i class="fa-solid fa-landmark"></i>
                   <div class="body-wrapper">
-                      <h3></h3>
-                      <p></p>
+                        <h3>Our Company History</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Repellendus quam cupiditate beatae itaque nam aperiam!
+                        </p>
                   </div>
               </div>
               <div class="unique__section--body">
-                        <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-standard-factory-flaticons-lineal-color-flat-icons.png"/>
-                  <div class="body-wrapper">
-                      <h3></h3>
-                      <p></p>
-                  </div>
+                    <i class="fa-solid fa-rocket"></i>
+                    <div class="body-wrapper">
+                        <h3>Our success mission</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Repellendus quam cupiditate beatae itaque nam aperiam!
+                            </p>
+                    </div>
               </div>
               <div class="unique__section--body">
-                  <i class="fa-solid fa-chart-line-up"></i>
+                  <i class="fa-solid fa-chart-line"></i>
                   <div class="body-wrapper">
-                      <h3></h3>
-                      <p></p>
+                      <h3>Our future plan</h3>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Repellendus quam cupiditate beatae itaque nam aperiam!
+                      </p>
                   </div>
               </div>
 
@@ -43,6 +50,59 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "@/assets/scss/variable.scss";
+.unique__section{
+    padding: 50px;
+    @media only screen and (max-width: 600px){
+        border: 2px solid green;
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    &--heroText{
+        //border: 2px solid red;
+        margin-bottom: 40px;
+        font-size: 3rem;
+        font-family: $heroText, serif;
+
+        @media only screen and (max-width: 600px){
+            border: 2px solid green;
+            font-size: 2.1rem;
+        }
+
+        span{
+            color: $primaryColor;
+            font-family: $heroText, serif;
+        }
+
+    }
+
+    &--body{
+        //border: 2px solid green;
+        display: flex;
+        padding: 10px;
+
+        .body-wrapper{
+            //border: 2px solid black;
+            width: 80%;
+            margin-left: 40px;
+
+            h3{
+                //border: 2px solid blue;
+                font-family: $paragraphText, serif;
+                font-weight: 500;
+                word-spacing: 0.13ch;
+            }
+        }
+
+    }
+
+    .fa-solid{
+        color: red;
+        font-size: 3rem;
+        margin-top: 27px;
+    }
+}
 
 </style>
