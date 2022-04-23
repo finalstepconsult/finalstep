@@ -6,13 +6,16 @@ import Vue2Editor from "vue2-editor";
 import AOS from "aos"
 import "aos/dist/aos.css"
 import VueParticles from 'vue-particles'
+import VueMarquee from 'vue-marquee-component'
+
+
 
 
 //import * as VueAos from 'vue-aos'
 
-Vue.use(Vue2Editor);
+Vue.use(Vue2Editor)
 Vue.use(VueParticles)
-
+Vue.use(VueMarquee)
 
 Vue.config.productionTip = false;
 

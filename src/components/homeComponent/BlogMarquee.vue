@@ -1,28 +1,144 @@
 <template>
-    <div>
-        <!--Vue3Marquee :pauseOnHover="true">
-            <div class="card" v-for="avatar in avatarArray" :key="avatar">
-            <img :src="avatar" width="100" height="100" />
-            <p style="margin-top: 10px; margin-bottom: 0px;">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <button class="btn">Learn More</button>
+    <div class="container-fluid marquee__section ">
+        <h2 class="hotTopic__header mb-4 marquee_text">
+          <span>Trending</span> Stories
+        </h2>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-4 customCol " :post="post" v-for="(post, index) in blogCardTemplate" :key="index">
+              <router-link to="/">
+              <div class="card blogList__section--card">
+                <img src="" class="card-img-top blogList__section--img" alt="...">
+                <div class="card-body blogList__section--body">
+                  <a href="#" class="blogList__section--category">WAEC</a>
+                  <h5 class="card-title blogList__section--title">{{post.blogTitle}}</h5>
+                  <p class="text-muted">by Ezechimere</p>
+                  <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <div class="blogList__section--cardFooter">
+                    <p class="text-muted">3 minutes read</p>
+                    <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
+                  </div>
+                  
+                </div>
+              </div>
+              </router-link>
             </div>
-        </Vue3Marquee-->
-        <h3>ygufvhi</h3>
+
+        </div>
     </div>
 
 </template>
 
 <script>
-
 export default {
-    
+  props: [],
+  components: {    
+  },
+
+  data() {
+    return{
+      blogPostTemplate: [],
+    }
+  },
+
+  computed: {
+    blogCardTemplate(){
+      return this.$store.state.blogCardTemplate
+    }
+  }
 
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/scss/variable.scss";
+.marquee__section{
+    background-color: $defaultWhite;
+    @media only screen and (max-width: 600px){
+      margin-top: -20px;
+    }
+    @media only screen and (min-width: 900px) and (max-width: 1200px){
+    }
 
+    .marquee_text{
+        //border: 2px solid red;
+        font-family: $heroText, serif !important;
+        font-size: 2.5rem;
+        font-weight: 600;
+
+        @media only screen and (max-width: 600px){
+          margin-top: 20px;
+          font-size: 2rem;
+          padding-top: 20px;
+          margin-bottom: 7px !important;
+        }
+
+        span{
+            font-family: $heroText, serif !important;
+            font-size: 2.5rem;
+            color: $primaryColor;
+  
+          @media only screen and (max-width: 600px){
+            margin-top: 20px;
+            font-size: 2rem;
+          }
+        }
+    }
+
+    .row{
+      //border: 2px solid red;
+      padding-left: 35px;
+      @media only screen and (max-width: 600px){
+      }
+      @media only screen and (min-width: 900px) and (max-width: 1200px){
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-top: -40px;
+      }
+ 
+    }
+    .customCol{
+      padding: 0 !important;
+      width: 25rem;
+      margin-left: 20px !important;
+      @media only screen and (max-width: 600px){
+        width: 28rem !important;
+      }
+      @media only screen and (min-width: 900px) and (max-width: 1200px){
+        width: 18rem;
+        transform: translateX(-2%)
+      }
+    }
+
+    .blogList__section--card{
+      margin-top: -20px;
+      width: 100%;
+        @media only screen and (max-width: 600px){
+          width: 20rem !important;
+          margin-left: -21px;
+        }
+        @media only screen and (max-width: 414px) and (min-width: 414px){
+          margin-left: -15px !important;
+          margin-bottom: 10px;
+        }
+        @media only screen and (max-width: 375px) and (min-width: 375px){
+          margin-left: -35px;
+          margin-bottom: 10px;
+        }
+        @media only screen and (max-width: 393px) and (min-width: 393px){
+          margin-left: -27px;
+          margin-bottom: 10px;
+        }
+        @media only screen and (max-width: 412px) and (min-width: 412px){
+          margin-left: -17px;
+          margin-bottom: 10px;
+        }
+        @media only screen and (min-width: 900px) and (max-width: 1200px){
+        }
+
+    }
+
+    .hotTopic__header{
+      margin-top: 30px;
+    }
+}
 </style>

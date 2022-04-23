@@ -15,7 +15,8 @@ export default {
         BlogHero,
         BlogList,
         BlogNewsletter,
-    }
+    },
+
 
 }
 </script>

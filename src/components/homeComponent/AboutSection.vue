@@ -44,6 +44,7 @@ export default {
       padding: 0 !important;
     }
 
+
     .row{
       width: 100%;
       margin: 0;
@@ -58,7 +59,6 @@ export default {
     &--customCol{
       padding: 0;
       position: relative;
-
 
       @media only screen and (max-width: 600px){
         width: 100%;
@@ -98,6 +98,18 @@ export default {
         //border: 1px solid rgba( 255, 255, 255, 0.18 );
       }
 
+      @media only screen and (min-width: 414px) and (max-width: 414px){
+        height: 65vh;
+        top: 18%;
+      }
+
+      @media only screen and (min-width: 375px) and (max-width: 375px){
+        height: 80vh;
+        top: 10%;
+      }
+      @media only screen and (min-width: 900px) and (max-width: 1200px){
+        top: 7%;
+      }
 
       h3{
         font-family: $paragraphText, serif;
@@ -131,6 +143,10 @@ export default {
           font-size: 2.1rem;
           color: $defaultBlack;
         }
+        @media only screen and (min-width: 900px) and (max-width: 1200px){
+          width: 100%;
+          font-size: 2rem;
+        }
 
         span{
           color: $primaryColor;
@@ -139,6 +155,10 @@ export default {
 
           @media only screen and (max-width: 600px){
             font-size: 2.1rem;
+          }
+          @media only screen and (min-width: 900px) and (max-width: 1200px){
+            font-size: 2rem;
+            font-weight: 600;
           }
         }
       }
@@ -153,9 +173,13 @@ export default {
         word-spacing: 0.13ch;
         color: $defaultBlack;
 
-          @media only screen and (max-width: 600px){
-            margin-top: 30px;
-          }
+        @media only screen and (max-width: 600px){
+          margin-top: 30px;
+        }
+        @media only screen and (min-width: 900px) and (max-width: 1200px){
+          margin-top: 30px ;
+        }
+
       }
     }
 
@@ -173,6 +197,10 @@ export default {
         padding:10px 10px;
         margin-left: 15px;
       }
+
+      @media only screen and (min-width: 900px) and (max-width: 1200px){
+        padding: 10px 10px;
+      }    
 
 
       &:hover{

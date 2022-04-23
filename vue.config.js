@@ -1,5 +1,9 @@
 module.exports = {
   chainWebpack: (config) => {
+    config.plugin('html').tap(args => {
+      args[0].title = 'Finalstep';
+      return args
+    })
     const svgRule = config.module.rule("svg");
 
     svgRule.uses.clear();

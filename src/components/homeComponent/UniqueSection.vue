@@ -1,8 +1,20 @@
 <template>
   <div class="unique__section container-fluid">
       <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
-              
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6 unique__section--customCol">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../assets/images/unique_img1.jpg" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../assets/images/unique_img2.jpg" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../assets/images/unique_img3.jpg" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+                    </div>
+                </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
               <h2 class="unique__section--heroText">
@@ -55,9 +67,15 @@ export default {
 .unique__section{
     padding: 50px;
     @media only screen and (max-width: 600px){
-        border: 2px solid green;
+        //border: 2px solid green;
         margin-top: 20px;
         padding: 10px;
+    }
+    @media only screen and (min-width: 900px) and (max-width: 1400px){
+    }
+
+    &--customCol{
+        padding: 0;
     }
 
     &--heroText{
@@ -67,8 +85,13 @@ export default {
         font-family: $heroText, serif;
 
         @media only screen and (max-width: 600px){
-            border: 2px solid green;
+            //border: 2px solid green;
             font-size: 2.1rem;
+            margin-top: 20px
+        }
+        @media only screen and (min-width: 900px) and (max-width: 1200px){
+            font-size: 2rem;
+            font-weight: 600;
         }
 
         span{
@@ -81,7 +104,7 @@ export default {
     &--body{
         //border: 2px solid green;
         display: flex;
-        padding: 10px;
+        padding: 0px 10px;
 
         .body-wrapper{
             //border: 2px solid black;
@@ -93,6 +116,22 @@ export default {
                 font-family: $paragraphText, serif;
                 font-weight: 500;
                 word-spacing: 0.13ch;
+                color: $defaultBlack;
+                @media only screen and (min-width: 900px) and (max-width: 1200px){
+                    margin-top: -20px;
+                    font-size: 1.4rem;
+                }
+
+            }
+
+            p{ 
+                font-size: .9rem;
+                color: $defaultBlack;
+                width: 100%;
+                @media only screen and (min-width: 900px) and (max-width: 1200px){
+                    margin-top: -7px;
+                    margin-bottom: 30px;
+                }
             }
         }
 
@@ -100,9 +139,22 @@ export default {
 
     .fa-solid{
         color: red;
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin-top: 27px;
     }
+
+    .carousel{
+        height: initial !important;
+    }
+
+    .carousel-img{
+        height: 100%;
+        @media only screen and (min-width: 900px) and (max-width: 1200px){
+            height: 46.5vh;
+        }
+    }
+
+
 }
 
 </style>

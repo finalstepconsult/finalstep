@@ -141,11 +141,12 @@
 
 <script>
 export default {
-
+  name: "blogList",
+  prop: ["post"]
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/scss/variable.scss";
 .blogList__section{
   padding: 50px 70px;

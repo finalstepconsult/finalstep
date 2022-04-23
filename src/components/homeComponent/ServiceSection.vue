@@ -114,9 +114,10 @@ export default {
 @import "@/assets/scss/variable.scss";
 .service__section{
     background-color: #ffffff;
-    padding: 70px 40px 0px 40px;
+    padding: 0px 40px 0px 40px;
+    border: 2px solid red;
     @media only screen and (max-width: 600px){
-
+    
     }
 
 

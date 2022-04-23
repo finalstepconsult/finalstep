@@ -36,7 +36,8 @@ export default {
 
 .customCol{
     padding: 20px 40px;
-    //border: 2px solid red;
+    @media only screen and (min-width: 900px) and (max-width: 1200px){
+    }
 }
 .hero-svg{
     width: 600px;
@@ -48,19 +49,21 @@ export default {
         width: 400px;
         height: 400px;
     }
+    @media only screen and (min-width: 900px) and (max-width: 1200px){
+        width: 450px;
+        height: 400px;
+        margin: 0 -15px;
+    }
 
 }
 
 .hero__text{
     min-height: 100%;
     @media only screen and (max-width: 600px) {
-        //border: 2px solid red;
         margin: 0 -10px;
-
     }
 
     &--main{
-       // border: 2px solid blue;
         font-family: $paragraphText, sans-serif;
         font-weight: 700;
         font-size:5rem;
@@ -68,6 +71,11 @@ export default {
             font-size: 3rem;
             line-height: 4rem;
         
+        }
+        @media only screen and (min-width: 900px) and (max-width: 1200px){
+            font-size: 4rem;
+            font-weight: 500;
+            margin-top: 40px;
         }
 
 

@@ -6,7 +6,9 @@
         </p>
 
         <div class="row faq__section--row" >
-            <div class="col-md-6 faq__section--col"></div>
+            <div class="col-md-6 faq__section--col">
+              <img src="../../assets/images/faq.jpg" alt="" class="faqImg">
+            </div>
             <div class="col-md-6 faq__section--col1">
                 <div class="faq-list faq__section--faq1" @click="showFaq1" :class="[isActive1 ? activeClass : '']">
                     <h3>What is the Deadline for WAEC CASS Registration?</h3>
@@ -136,8 +138,10 @@ methods:{
 <style lang="scss">
 @import "@/assets/scss/variable.scss";
 .faq__section{
-
     padding: 50px;
+    @media only screen and (max-width: 600px){
+        padding: 10px;
+    }
 
     &--heroText{
         text-align: center;
@@ -146,18 +150,37 @@ methods:{
         color: $defaultBlack;
         word-spacing: 0.20ch;
         letter-spacing: 0.09ch;
-        font-weight: 500;
+        font-weight: 600;
+        @media only screen and (max-width: 600px){
+            font-size: 2rem;
+            text-align: left;
+            margin-top: 20px;
+        }
+        @media only screen and (max-width: 414px) and (min-width: 414px){
+            font-family: $heroText, serif;
+        }
+
     }
 
 
     &--paragraphText{
-        font-family: $strongText, serif;
+        font-family: $buttonCta, serif;
         font-size: 1.2rem;
         width: 50%;
         text-align: center;
         margin-left: 25%;
         color: $defaultBlack;
         margin-top: 25px;
+
+
+        @media only screen and (max-width: 600px){
+            //border: 2px solid blue;
+            font-size: 1rem;
+            text-align: left;
+            width: 100%;
+            margin-left: 0%;
+            margin-top: 20px;
+        }
         
     }
 
@@ -165,30 +188,44 @@ methods:{
         margin-top: 40px;
     }
 
+    &--col{
+
+    }
+
     &--col1{
         //border: 2px solid blue;
-        padding: 0;
+        padding: 30px 0px;
+    }
+
+    .faqImg{
+        height: 100%;
+        width: 100%;
     }
 
     .faq-list{
-        //border: 2px solid green;
         width: 100%;
         padding: 0;
+
 
         h3{
             font-size: 1.2rem;
             padding: 20px;
-            //border: 2px solid red;
             font-family: $heroText, serif;
             color: $defaultBlack;
             background-color: #fff;
             box-shadow: 0 2px 2px 0 rgba( 31, 38, 135, 0.37 );
             cursor: pointer;
-
+            @media only screen and (max-width: 600px){
+                font-size: 1rem;
+                line-height: 1.2rem;
+            }
             &:hover{
                 background-color: $primaryColor;
                 color: #fff;
             }
+
+
+
         }
 
         p{

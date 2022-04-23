@@ -13,7 +13,6 @@
 
 <script>
 import HeroSection from '@/components/homeComponent/HeroSection.vue'
-//import ServiceSection from '@/components/homeComponent/ServiceSection.vue'
 import AboutSection from '@/components/homeComponent/AboutSection.vue'
 import UniqueSection from '@/components/homeComponent/UniqueSection.vue'
 import ServiceHome from '@/components/homeComponent/ServiceHome.vue'
