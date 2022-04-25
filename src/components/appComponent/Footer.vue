@@ -29,7 +29,7 @@
 
         <div class="custom__footer--col-3">
           <ul class="">
-          <li class="nav-item"><router-link  :to="{name: 'FAQS'}" class="nav-link px-2 text-muted">FAQs</router-link></li>
+          <li class="nav-item"><router-link  :to="{name: 'Home'}" class="nav-link px-2 text-muted">FAQs</router-link></li>
           <li class="nav-item"><router-link  :to="{name: 'Service'}" class="nav-link px-2 text-muted">Service</router-link></li>
           <li class="nav-item"><router-link  :to="{name: 'Contact'}" class="nav-link px-2 text-muted">Contact</router-link></li>
           <li class="nav-item"><router-link  :to="{name: 'Contact'}" class="nav-link px-2 text-muted">Sign In</router-link></li>

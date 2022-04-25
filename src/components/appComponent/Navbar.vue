@@ -41,6 +41,7 @@
             <router-link class="nav-link" :to="{name: 'Alphabase'}"><li class="nav-item">Alphabase</li></router-link>
             <router-link class="nav-link" :to="{name: 'About'}"><li class="nav-item">About Us</li></router-link>
             <router-link class="nav-link" :to="{name: 'Service'}"><li class="nav-item">Service</li></router-link>
+            <router-link class="nav-link" :to="{name: 'Login'}"><li class="nav-item">Login <i class="bi bi-box-arrow-in-right"></i></li></router-link>
           </ul>
         </header>
       </div>
