@@ -9,6 +9,8 @@ import Contact from "../views/Contact.vue";
 import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import ForgetPassword from "../views/ForgetPassword.vue";
+import Profile from "../views/Profile.vue";
+import Admin from "../views/Admin.vue";
 
 Vue.use(VueRouter);
 
@@ -88,6 +90,22 @@ const routes = [
     component: ForgetPassword,
     meta: {
       title: 'Reset-password'
+    }
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
+    meta: {
+      title: 'Profile'
+    }
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+    meta: {
+      title: 'Admin'
     }
   },
 ];

@@ -19,7 +19,7 @@ export default new Vuex.Store({
     profileEmail: null,
     profileUsername: null,
     profileId: null,
-    //profileInitials: null,
+    profileInitials: null,
   },
   mutations: {
     setProfileInfo(state, doc){
@@ -28,10 +28,10 @@ export default new Vuex.Store({
       state.profileUsername = doc.data().username;
     },
 
-    /*setProfileInitials(state){
-      state.profileInitials = state.profileUsername.match(/(\b\S)?/g).join("") +
-      state.profileEmail.match(/(\b\S)?/g).join("");
-    },*/
+    setProfileInitials(state){
+      state.profileInitials = state.profileUsername.match(/(\b\S)?/g).join("")
+
+    },
 
     updateUser(state, payload){
       state.user = payload;
@@ -43,7 +43,7 @@ export default new Vuex.Store({
       const finalstepDatabase = await db.collection('users').doc(firebase.auth().currentUser.uid);
       const dbResults = await finalstepDatabase.get();
       commit("setProfileInfo", dbResults);
-      //commit("setProfileInitials") 
+      commit("setProfileInitials") 
       console.log(dbResults);
     }
   },
