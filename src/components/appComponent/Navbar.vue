@@ -54,10 +54,13 @@
                 </div>
               </div>
               <div class="options">
-
                   <router-link :to="{name: 'Profile'}" class="option">
                     <userIcon class="icon" />
                     <p>profile</p>
+                  </router-link>
+                  <router-link :to="{name: 'CreatePost'}" class="option">
+                    <userIcon class="icon" />
+                    <p>Create Post</p>
                   </router-link>
                   <router-link :to="{name: 'Admin'}" class="option">
                     <adminIcon class="icon" />

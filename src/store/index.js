@@ -14,6 +14,11 @@ export default new Vuex.Store({
       {blogTitle: "Windows not Booting [SOLVED]", blogHeroPhoto: "image 3", blogDatePulished: "May 1, 2021"},
       //{blogTitle: "SERVER Spec for you bank services", blogHeroPhoto: "image 4", blogDatePulished: "May 1, 2021"},
     ],
+    finalstepBlogHTML: "Write your blog title here...",
+    finalstepBlogTitle: "",
+    finalstepBlogPhotoName: "",
+    finalstepBlogPhotoFileURL: null,
+    finalstepBlogPhotoPreview: null,
     editPost: null,
     user: null,
     profileEmail: null,
@@ -22,6 +27,26 @@ export default new Vuex.Store({
     profileInitials: null,
   },
   mutations: {
+    newBlogPost(state, payload){
+      state.finalstepBlogHTML = payload
+    },
+
+    updateBlogTitle(state, payload){
+      state.finalstepBlogTitle = payload;
+    },
+
+    fileNameChange(state, payload){
+      state.finalstepBlogPhotoName = payload;
+    },
+
+    createFileURL(state, payload){
+      state.finalstepBlogPhotoFileURL = payload;
+    },
+
+    openPhotoPreview(state){
+      state.finalstepBlogPhotoPreview = !state.finalstepBlogPhotoPreview;
+    },
+
     setProfileInfo(state, doc){
       state.profileId = doc.id;
       state.profileEmail = doc.data().email;
