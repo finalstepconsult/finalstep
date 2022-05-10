@@ -4,20 +4,20 @@
           <span>Trending</span> Stories
         </h2>
         <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-4 customCol " :post="post" v-for="(post, index) in blogCardTemplate" :key="index">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 customCol " :post="post" v-for="(post, index) in blogPostTrending" :key="index">
               <router-link to="/">
               <div class="card blogList__section--card">
-                <img src="" class="card-img-top blogList__section--img" alt="...">
+                <img :src="post.blogCoverPhoto" class="card-img-top blogList__section--img" alt="...">
                 <div class="card-body blogList__section--body">
-                  <a href="#" class="blogList__section--category">WAEC</a>
+                  <a href="#" class="blogList__section--category">{{post.blogCategory}}</a>
                   <h5 class="card-title blogList__section--title">{{post.blogTitle}}</h5>
                   <p class="text-muted">by Ezechimere</p>
-                  <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p class="card-text blogList__section--text" v-html="post.blogHTML"></p>
                   <div class="blogList__section--cardFooter">
                     <p class="text-muted">3 minutes read</p>
-                    <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
+                    <router-link :to="{name: 'PostDetail', params:{blogid: post.blogID}}" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
                   </div>
-                  
+                  <!--date{{new Date(post.blogDate).toLocalString('en-us', {dateStyle: "long"})}}-->
                 </div>
               </div>
               </router-link>
@@ -36,13 +36,12 @@ export default {
 
   data() {
     return{
-      blogPostTemplate: [],
     }
   },
 
   computed: {
-    blogCardTemplate(){
-      return this.$store.state.blogCardTemplate
+    blogPostTrending(){
+      return this.$store.getters.blogPostTrending
     }
   }
 
@@ -52,7 +51,13 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/variable.scss";
 .marquee__section{
-    background-color: $defaultWhite;
+
+  .hotTopic__header{
+    margin-top: 30px;
+  }
+
+}
+    /*background-color: $defaultWhite;
     @media only screen and (max-width: 600px){
       margin-top: -20px;
     }
@@ -114,9 +119,9 @@ export default {
       width: 100%;
         @media only screen and (max-width: 600px){
           width: 20rem !important;
-          margin-left: -21px;
+          //margin-left: -21px;
         }
-        @media only screen and (max-width: 414px) and (min-width: 414px){
+       /* @media only screen and (max-width: 414px) and (min-width: 414px){
           margin-left: -15px !important;
           margin-bottom: 10px;
         }
@@ -133,12 +138,8 @@ export default {
           margin-bottom: 10px;
         }
         @media only screen and (min-width: 900px) and (max-width: 1200px){
-        }
+        }*
 
-    }
+    }*/
 
-    .hotTopic__header{
-      margin-top: 30px;
-    }
-}
 </style>

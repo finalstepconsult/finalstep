@@ -1,134 +1,23 @@
 <template>
   <div class="container blogList__section">
-      <div class="blogList__section--header">
-        <h2 class="hotTopic__header">
-          Trendings
-        </h2>
-        <hr/>
-        <div class="row">
-            <div class="col-md-4 customCol">
-              <router-link to="/">
-              <div class="card blogList__section--card" style="width: 23rem;">
-                <img src="" class="card-img-top blogList__section--img" alt="...">
-                <div class="card-body blogList__section--body">
-                  <a href="#" class="blogList__section--category">WAEC</a>
-                  <h5 class="card-title blogList__section--title">WAEC Registration is Ongoing</h5>
-                  <p class="text-muted">by Ezechimere</p>
-                  <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <div class="blogList__section--cardFooter">
-                    <p class="text-muted">3 minutes read</p>
-                    <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
-                  </div>
-                  
-                </div>
-              </div>
-              </router-link>
-            </div>
-            <div class="col-md-4 customCol ">
-              <router-link to="/">
-              <div class="card blogList__section--card" style="width: 23rem;">
-                <img src="" class="card-img-top blogList__section--img" alt="...">
-                <div class="card-body blogList__section--body">
-                  <a href="#" class="blogList__section--category">Design</a>
-                  <h5 class="card-title blogList__section--title">WAEC Registration is Ongoing</h5>
-                  <p class="text-muted">by Ezechimere</p>
-                  <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <div class="blogList__section--cardFooter">
-                    <p class="text-muted">3 minutes read</p>
-                    <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
-                  </div>
-                </div>
-              </div>
-              </router-link>
-            </div>
-            <div class="col-md-4 customCol ">
-              <router-link to="/">
-              <div class="card blogList__section--card" style="width: 23rem;">
-                <img src="" class="card-img-top blogList__section--img" alt="...">
-                <div class="card-body blogList__section--body">
-                  <a href="#" class="blogList__section--category">NECO</a>
-                  <h5 class="card-title blogList__section--title">WAEC Registration is Ongoing</h5>
-                  <p class="text-muted">by Ezechimere</p>
-                  <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <div class="blogList__section--cardFooter">
-                    <p class="text-muted">3 minutes read</p>
-                    <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
-                  </div>
-                </div>
-              </div>
-              </router-link>
-            </div>
-        </div>
-      </div>
       <div class="blogList__sectionTwo">
         <h2 class="hotTopic__header">
           Articles
         </h2>
         <hr/>
         <div class="row row2">
-          <div class="col-md-4 customCol">
+          <div class="col-md-4 customCol " :post="post" v-for="(post, index) in blogPosts" :key="index">
             <router-link to="/">
             <div class="card blogList__section--card" style="width: 18rem;">
-              <img src="" class="card-img-top blogList__section--img" alt="...">
+              <img :src="post.blogCoverPhoto" class="card-img-top blogList__section--img" alt="...">
               <div class="card-body blogList__section--body">
                 <a href="#" class="blogList__section--category">WAEC</a>
-                <h5 class="card-title blogList__section--title">WAEC Registration is Ongoing</h5>
+                <h5 class="card-title blogList__section--title">{{post.blogTitle}}</h5>
                 <p class="text-muted">by Ezechimere</p>
-                <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text blogList__section--text">{{post.blogHTML}}</p>
                 <div class="blogList__section--cardFooter">
                   <p class="text-muted">3 min</p>
-                  <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
-                </div>
-              </div>
-            </div>
-            </router-link>
-          </div>
-          <div class="col-md-4 customCol">
-            <router-link to="/">
-            <div class="card blogList__section--card" style="width: 18rem;">
-              <img src="" class="card-img-top blogList__section--img" alt="...">
-              <div class="card-body blogList__section--body">
-                <a href="#" class="blogList__section--category">WAEC</a>
-                <h5 class="card-title blogList__section--title">WAEC Registration is Ongoing</h5>
-                <p class="text-muted">by Ezechimere</p>
-                <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div class="blogList__section--cardFooter">
-                  <p class="text-muted">3 min</p>
-                  <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
-                </div>
-              </div>
-            </div>
-            </router-link>
-          </div>
-          <div class="col-md-4 customCol">
-            <router-link to="/">
-            <div class="card blogList__section--card" style="width: 18rem;">
-              <img src="" class="card-img-top blogList__section--img" alt="...">
-              <div class="card-body blogList__section--body">
-                <a href="#" class="blogList__section--category">WAEC</a>
-                <h5 class="card-title blogList__section--title">WAEC Registration is Ongoing</h5>
-                <p class="text-muted">by Ezechimere</p>
-                <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div class="blogList__section--cardFooter">
-                  <p class="text-muted">3 min</p>
-                  <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
-                </div>
-              </div>
-            </div>
-            </router-link>
-          </div>
-          <div class="col-md-4 customCol">
-            <router-link to="/">
-            <div class="card blogList__section--card" style="width: 18rem;">
-              <img src="" class="card-img-top blogList__section--img" alt="...">
-              <div class="card-body blogList__section--body">
-                <a href="#" class="blogList__section--category">WAEC</a>
-                <h5 class="card-title blogList__section--title">WAEC Registration is Ongoing</h5>
-                <p class="text-muted">by Ezechimere</p>
-                <p class="card-text blogList__section--text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div class="blogList__section--cardFooter">
-                  <p class="text-muted">3 min</p>
-                  <router-link to="/" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
+                  <router-link :to="{name: 'PostDetail', params:{blogid: post.blogID}}" class="blogList__section--readMore readMore">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></router-link>
                 </div>
               </div>
             </div>
@@ -142,7 +31,12 @@
 <script>
 export default {
   name: "blogList",
-  prop: ["post"]
+  prop: ["post"],
+    computed: {
+        blogPosts(){
+            return this.$store.state.blogPosts;
+        },
+    }
 }
 </script>
 

@@ -1,30 +1,29 @@
 <template>
   <nav class="container-fluid customContainer" :class="[isSticky ? stickyClass : '']">
     <div class="mobileNav">
-      <div class="mobileNav__control" v-show="mobile">
-        <router-link :to="{name: 'Home'}" class="navBrand" >Finalstep</router-link>
-        <i @click="toggleMobileMenu" class="bi bi-list mobileMenu" :class="[isTr ? hideHam : '']" v-show="mobile"></i>
-        <i @click="checkIsTr" class="bi bi-x mobile-menu-close" v-show="isTr" :class="[isTr ? dspClose : '']"></i>
-      </div>
-      <transition name="slide">
-        <ul class="mobile-nav__container" v-show="mobileView">
-          <router-link :to="{name: 'Home'}"><li class="nav-list"><i class="fas fa-home menuList-icon"></i><span>Home</span></li></router-link>
-          <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-blog menuList-icon"></i><span>Blog</span></li></router-link>
-          <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-blog menuList-icon"></i><span>Alphabase</span></li></router-link>
-          <router-link :to="{name: 'About'}"><li class="nav-list"><i class="fas fa-info-circle menuList-icon"></i><span>About Us</span></li></router-link>
-          <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-hand-holding-usd menuList-icon"></i><span>Service</span></li></router-link>
-                    <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-sms menuList-icon"></i><span>Contact</span></li></router-link>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" v-show="mobile">
+        <div class="container-fluid">
+          <router-link :to="{name: 'Home'}" class="nav-list" >Finalstep</router-link>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" @click="closeMenu" :class="[menuIsClose ? menuClose : '']">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <router-link :to="{name: 'Home'}" ><li class="nav-list"><i class="fas fa-home menuList-icon"></i><span>Home</span></li></router-link>
+              <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-blog menuList-icon"></i><span>Blog</span></li></router-link>
+              <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-blog menuList-icon"></i><span>Alphabase</span></li></router-link>
+              <router-link :to="{name: 'About'}" ><li class="nav-list"><i class="fas fa-info-circle menuList-icon"></i><span>About Us</span></li></router-link>
+              <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-hand-holding-usd menuList-icon"></i><span>Service</span></li></router-link>
+              <router-link :to="{name: 'Blog'}"><li class="nav-list"><i class="fas fa-sms menuList-icon"></i><span>Contact</span></li></router-link>
 
-          <!--router-link :to="{name: 'Register'}"><li class="nav-list btn btn__join--us">Join Us <i class="fas fa-sign-in-alt fs"></i></li></!--router-link-->
-
-
-          <section class="socials-menu-icon"> 
-            <i class="fa fa-facebook sc-icon"></i>
-            <i class="fab fa-twitter sc-icon"></i>
-            <i class="fab fa-youtube sc-icon"></i>
-          </section>
-        </ul>
-      </transition>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
     </div>
 
     <div class="desktopNav" v-show="!mobile">
@@ -58,13 +57,9 @@
                     <userIcon class="icon" />
                     <p>profile</p>
                   </router-link>
-                  <router-link :to="{name: 'CreatePost'}" class="option">
+                  <router-link :to="{name: 'CreatePost'}" class="option" v-if="isAdmin">
                     <userIcon class="icon" />
                     <p>Create Post</p>
-                  </router-link>
-                  <router-link :to="{name: 'Admin'}" class="option">
-                    <adminIcon class="icon" />
-                    <p>Admin</p>
                   </router-link>
                   <div to="/" class="option" @click="signOut">
                     <signOutIcon class="icon" />
@@ -83,14 +78,13 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+//import db from '../../firebase/firebaseInit';
 import userIcon from "../../assets/Icons/user-alt-light.svg"
-import adminIcon from "../../assets/Icons/user-crown-light.svg"
 import signOutIcon from "../../assets/Icons/sign-out-alt-regular.svg"
 export default {
 name: "Navbar",
 components:{
   userIcon,
-  adminIcon,
   signOutIcon,
 },
 data() {
@@ -111,6 +105,8 @@ data() {
     transition: false,
     rotateClass: 'is-rotate',
     profileMenu: null,
+    menuClose: 'menu-close',
+    menuIsClose: null,
   }
 },
 
@@ -118,6 +114,9 @@ created(){
   window.addEventListener('resize', this.checkScreenSize);
   window.addEventListener('scroll', this.handleScroll);
   this.checkScreenSize();
+  //this.getUserAdmin();
+
+
 },
 
 unmounted() {
@@ -148,6 +147,11 @@ methods : {
     }
   },
 
+  closeMenu(){
+    this.menuIsClose = !this.menuIsClose;
+  },
+
+
 
   //Toggle the hamburger mobile menu
   toggleMobileMenu(){
@@ -172,12 +176,15 @@ methods : {
   signOut(){
     firebase.auth().signOut();
     window.location.reload();
-  }
+  },
 },
 
 computed:{
   user(){
     return this.$store.state.user;
+  },
+  isAdmin(){
+    return this.$store.state.isAdmin;
   }
 }
 
@@ -230,6 +237,62 @@ computed:{
     //background-color: red;
   }
 
+  .navbar-light .navbar-toggler{
+    border: none !important;
+  }
+
+  .navbar-toggler:focus,
+  .navbar-toggler:active,
+  .navbar-toggler-icon:focus {
+      outline: none;
+      box-shadow: none;
+  }
+
+.navbar-collapse {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  background-color: $defaultWhite;
+  height: 100%;
+}
+
+.navbar-collapse.collapsing {
+  left: -75%;
+  transition: height 0s ease;
+}
+
+.navbar-collapse.show {
+  left: 0;
+  transition: left 300ms ease-in-out;
+}
+
+.navbar-toggler.collapsed~.navbar-collapse {
+  transition: left 500ms ease-in-out;
+}
+
+.menu-close{
+
+  .navbar-collapse.collapsing {
+    left: -75%;
+    transition: height 0s ease;
+  }
+}
+
+    .navbar-light .navbar-toggler-icon {
+        background-image: none;
+        border: none !important;
+    }
+
+    .navbar-light .navbar-toggler-icon::after {
+        content: "\f0c9";
+        font-family: "FontAwesome";
+        font-size: 32px;
+        color: #333;
+    }
+
   .mobileMenu{
     font-size: 2.7rem;
     //border: 2px solid red;
@@ -251,12 +314,13 @@ computed:{
   }
 
   .nav-list{
-    color: $secondaryColor;
-    font-size: 1.5rem;
+    color: $primaryColor;
+    font-size: 1.1rem;
     font-family: $heroText;
     border-bottom: 1px solid $secondaryColor;
-    padding: 30px 20px;
+    padding: 20px 20px;
     text-align: left;
+    font-weight: 500;
   }
 
 

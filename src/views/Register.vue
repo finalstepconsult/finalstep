@@ -86,6 +86,7 @@ export default {
             finalstepUserUsername: "",
             finalstepUserEmail: "",
             finalstepUserPassword: "",
+            finalstepUserIsAdmin: null,
             err: null,
             errMsg: "",
         }
@@ -105,6 +106,7 @@ export default {
                     await finalstepDatabase.set({
                         email: this.finalstepUserEmail,
                         username: this.finalstepUserUsername,
+                        isAdmin: this.finalstepUserIsAdmin,
                     })
                     this.$router.push({name: "Home"});
                     return

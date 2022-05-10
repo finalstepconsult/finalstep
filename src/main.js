@@ -9,8 +9,11 @@ import VueParticles from 'vue-particles'
 //import VueMarquee from 'vue-marquee-component'
 import firebase from "firebase/app";
 import "firebase/auth";
+import VueSocialSharing from 'vue-social-sharing'
 
 
+
+Vue.use(VueSocialSharing);
 Vue.use(Vue2Editor)
 Vue.use(VueParticles)
 //Vue.use(VueMarquee)

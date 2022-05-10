@@ -65,7 +65,8 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/variable.scss";
 .unique__section{
-    padding: 50px;
+    padding: 25px;
+    padding-left: 40px;
     @media only screen and (max-width: 600px){
         //border: 2px solid green;
         margin-top: 20px;

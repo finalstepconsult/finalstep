@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <div class="app">
+    <div class="app" v-if="this.$store.state.postLoaded">
       <Navigation class="navbarApp" v-if="!navigation"/>
       <router-view v-slot="{ Component, route }">
         <transition name="fade" mode="out-in">
@@ -35,7 +35,7 @@ export default {
       }
     })
     this.checkRoute();
-    //console.log(firebase.auth().currentUser)
+    this.$store.dispatch("getPost");
   },
   mounted() {},
   methods: {
@@ -78,8 +78,8 @@ export default {
 }
 
 .container {
-  max-width: 1440px;
-  margin: 0 auto;
+  //max-width: 1440px;
+  //margin: 0 auto;
 }
 
 .navbarApp{

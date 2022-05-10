@@ -1,8 +1,8 @@
 <template>
-  <div class="create__post">
+  <div class="create-post">
       <BlogCoverPreview  v-show="this.$store.state.finalstepBlogPhotoPreview"/>
       <Loading v-show="loading"/>
-      <div class="create__post--container">
+      <div class="container">
           <div :class="{invisible: !err}" class="err-msg">
               <p><span>Error:</span>{{this.errMsg}}</p>
           </div>
@@ -14,25 +14,13 @@
                   <button class="preview" :class="{'button-inactive' : !this.$store.state.finalstepBlogPhotoFileURL}" @click="openPreview">Preview Photo</button>
                   <span>File Chosen: {{this.$store.state.finalstepBlogPhotoName}}</span>
               </div>
-                <div class="create__post--category" id="example">
-                    <select v-model="selectedCategory">
-                        <option disabled value="">Select Category</option>
-                        <option>WAEC</option>
-                        <option>JAMB</option>
-                        <option>Coding</option>
-                        <option>Design</option>
-                        <option>Networking</option>
-                        <option>CCTV</option>
-                        <option>Repairs</option>
-                    </select>
-                    </div>
           </div>
           <div class="editor">
               <vue-editor @image-added="imageHandler" :editorOptions="editorSettings" v-model="finalstepBlogHTML" useCustomImageHandler/>
           </div>
           <div class="blog-actions">
-              <button @click="uploadBlog">Pulish Post</button>
-              <router-link class="router-button" :to="{name: 'BlogPreview'}">Post Preview</router-link>
+              <button @click="updateBlog">Save Changes</button>
+              <router-link class="router-button" :to="{name: 'BlogPreview'}">Preview Changes</router-link>
           </div>
       </div>
   </div>
@@ -66,6 +54,8 @@ export default {
                 }
             },
             loading: null,
+            routeID: null,
+            currentBlog: null,
         }
     },
     computed: {
@@ -90,15 +80,14 @@ export default {
             set(payload){
                 this.$store.commit("newBlogPost", payload);
             }
-        },
-        selectedCategory: {
-            get(){
-                return this.$store.state.selectedCategory;
-            },
-            set(payload){
-                this.$store.commit("newCategory", payload);
-            }
         }
+    },
+    async mounted() {
+        this.routeID = this.$route.params.blogid;
+        this.currentBlog = await this.$store.state.blogPosts.filter((post) => {
+            return post.blogID === this.routeID;
+        });
+        this.$store.commit('setBlogState', this.currentBlog[0]);
     },
     methods: {
         fileChange(){
@@ -124,8 +113,9 @@ export default {
                 resetUpLoader();
             })
         },
-        uploadBlog(){
-            if(this.finalstepBlogTitle.length !== 0 && this.finalstepBlogHTML.length !== 0 && this.selectedCategory.length !== 0){
+        async updateBlog(){
+            const dataBase = db.collection('blogPosts').doc(this.routeID);
+            if(this.finalstepBlogTitle.length !== 0 && this.finalstepBlogHTML.length !== 0){
                 if (this.file) {
                     this.loading = true;
                     const storageRef = firebase.storage().ref();
@@ -137,30 +127,29 @@ export default {
                         this.loading = false;
                     }, async () => {
                         const downloadURL = await docRef.getDownloadURL();
-                        const timestamp = await Date.now();
-                        const dataBase = await db.collection("blogPosts").doc();
 
-                        await dataBase.set({
-                            blogID: dataBase.id,
+
+                        await dataBase.update({
                             blogHTML: this.finalstepBlogHTML,
                             blogCoverPhoto: downloadURL,
                             blogCoverPhotoName: this.blogCoverPhotoName,
                             blogTitle: this.finalstepBlogTitle,
-                            profileId: this.profileId,
-                            date: timestamp,
-                            category: this.selectedCategory,
                         });
-                        await this.$store.dispatch("getPost");
+                        await this.$store.dispatch("updatePost", this.routeID);
                         this.loading = false;
                         this.$router.push({name: "PostDetail", params: {blogid: dataBase.id}})
                     })
                     return
                 }
-                this.err = true;
-                this.errMsg = "Please make sure you uploaded a blog cover photo";
-                setTimeout(() => {
-                    this.err = false;
-                }, 5000);
+                this.loading = true;
+                await dataBase.update({
+                    blogHTML: this.finalstepBlogHTML,
+                    blogTitle: this.finalstepBlogTitle,
+                });
+                await this.$store.dispatch('updatePost', this.routeID);
+                this.loading = false;
+                this.$router.push({name: 'PostDetail', params:{blogid: dataBase.id}})
+                return;
             }
             this.err = true;
             this.errMsg = "Please ensure that your Blog title and Blog Post has been filled";
@@ -175,8 +164,7 @@ export default {
 
 
 <style lang="scss">
-@import "@/assets/scss/variable.scss";
-    .create__post{
+    .create-post{
         position: relative;
         height: 100%;
 
@@ -199,15 +187,15 @@ export default {
             border-radius: 20px;
             padding: 12px 24px;
             color: #fff;
-            background-color: darken($primaryColor, 20%);
+            background-color: #303030;
             text-decoration: none;
 
             &:hover{
-                background-color: darken($primaryColor, 10%);
+                background-color: rgba(48, 48, 48, 0.7);
             }
         }
 
-        &--container{
+        .container{
             position: relative;
             height: 100%;
             padding: 10px 25px 60px;
@@ -218,17 +206,13 @@ export default {
             opacity: 0 !important;
         }
 
-        .preview{
-            border: none;
-        }
-
         .err-msg{
             width: 100%;
             padding: 12px;
             border-radius: 8px;
             color: #fff;
             margin-bottom: 10px;
-            background-color: $primaryColor;
+            background-color: #303030;
             opacity: 1;
             transition: .5s ease all;
 
@@ -253,11 +237,11 @@ export default {
                 transition: .5s ease-in-out all;
                 padding: 10px 4px;
                 border: none;
-                border-bottom: 1px solid darken($primaryColor, 20%);
+                border-bottom: 1px solid #303030;
 
                 &:focus{
                     outline: none;
-                    box-shadow: 0 1px 0 0 darken($primaryColor, 10%);
+                    box-shadow: 0 1px 0 0 #303030;
                 }
             }
 
@@ -309,12 +293,10 @@ export default {
         }
 
         .blog-actions{
-            margin-top: 70px !important;
-
+            margin-top: 70px;
 
             button{
                 margin-right: 16px;
-                            border: none !important;
             }
         }
 
@@ -322,39 +304,4 @@ export default {
             opacity: .2;
         }
     }
-    .create__post{
-        &--category{
-            width: 25%;
-                cursor: pointer !important;
-                line-height: 1.1;
-
-            select{
-                //appearance: none;
-                background-color: transparent;
-                border: 1px solid darken($primaryColor, 20%);
-                border-radius: 0.25em;
-                padding: 0.25em 0.5em;
-                outline: none;
-                width: 100%;
-                height: 100%;
-                white-space: normal;
-
-                option{
-                    color: $defaultBlack;
-                    font-size: .9rem;
-                    font-family: $heroText, serif;
-                    line-height: 7px;
-                    font-weight: 600;
-                    padding: 20px;
-                                    height: 20rem;
-
-
-                    &:hover{
-                        background-color: darken($primaryColor, 20%) !important;
-                    }
-                }
-            }
-        }
-    }
-
 </style>

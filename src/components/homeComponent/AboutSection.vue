@@ -1,5 +1,5 @@
 <template>
-  <div class="about__section container">
+  <div class="about__section container-fluid">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8 about__section--customCol">
         <img src="../../assets/images/finalstep_img.jpg" alt="finalstep business image" style="width: 30rem;" 
@@ -35,9 +35,9 @@ export default {
     //border: 2px solid red;
     //width: 700px;
     @media only screen and (min-width: 600px) and (max-width: 1400px){
-      padding: 50px;
+      padding: 25px;
       background-color: $defaultWhite;
-      padding-top: 80px !important;
+      padding-top: 40px !important;
     }
     @media only screen and (max-width: 600px){
      // border: 2px solid green;

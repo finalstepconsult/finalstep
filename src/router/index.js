@@ -10,10 +10,15 @@ import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import ForgetPassword from "../views/ForgetPassword.vue";
 import Profile from "../views/Profile.vue";
-import Admin from "../views/Admin.vue";
+import PageNotFound from "../views/404Page.vue";
+//import Admin from "../views/Admin.vue";
 import CreatePost from "../views/CreatePost.vue";
 import BlogPreview from "../views/BlogPreview.vue";
 import PostDetail from "../views/PostDetail.vue";
+import EditPost from "../views/EditPost.vue";
+//import firebase from "firebase/app";
+import "firebase/auth";
+import store from "../store/index.js"
 
 Vue.use(VueRouter);
 
@@ -23,7 +28,8 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      title: 'Home'
+      title: 'Home',
+      requiresAuth: false,
     }
   },
 
@@ -32,7 +38,8 @@ const routes = [
     name: "Blog",
     component: Blog,
     meta: {
-      title: 'Blog'
+      title: 'Blog',
+      requiresAuth: false,
     }
   },
 
@@ -41,7 +48,18 @@ const routes = [
     name: "Alphabase",
     component: Alphabase,
     meta: {
-      title: 'Alphabase'
+      title: 'Alphabase',
+      requiresAuth: false,
+    }
+  },
+
+  {
+    path: "*",
+    name: "PageNotFound",
+    component: PageNotFound,
+    meta: {
+      title: '404-nopage-found',
+      requiresAuth: false,
     }
   },
 
@@ -50,7 +68,8 @@ const routes = [
     name: "About",
     component: About,
     meta: {
-      title: 'About'
+      title: 'About',
+      requiresAuth: false,
     }
   },
 
@@ -59,7 +78,8 @@ const routes = [
     name: "Service",
     component: Service,
     meta: {
-      title: 'Service'
+      title: 'Service',
+      requiresAuth: false,
     }
   },
 
@@ -68,7 +88,8 @@ const routes = [
     name: "Contact",
     component: Contact,
     meta: {
-      title: 'Contact'
+      title: 'Contact',
+      requiresAuth: false,
     }
   },
   {
@@ -76,7 +97,8 @@ const routes = [
     name: "Login",
     component: Login,
     meta: {
-      title: 'Login'
+      title: 'Login',
+      requiresAuth: false,
     }
   },
   {
@@ -84,7 +106,8 @@ const routes = [
     name: "Register",
     component: Register,
     meta: {
-      title: 'Register'
+      title: 'Register',
+      requiresAuth: false,
     }
   },
   {
@@ -92,7 +115,8 @@ const routes = [
     name: "ForgetPassword",
     component: ForgetPassword,
     meta: {
-      title: 'Reset-password'
+      title: 'Reset-password',
+      requiresAuth: false,
     }
   },
   {
@@ -100,39 +124,47 @@ const routes = [
     name: "Profile",
     component: Profile,
     meta: {
-      title: 'Profile'
+      title: 'Profile',
+      //requiresAuth: true,
     }
   },
   {
-    path: "/admin",
-    name: "Admin",
-    component: Admin,
-    meta: {
-      title: 'Admin'
-    }
-  },
-  {
-    path: "/create-post",
+    path: "/krate-post",
     name: "CreatePost",
     component: CreatePost,
     meta: {
-      title: 'create-post'
+      title: 'create-post',
+      requiresAuth: true,
+
     }
   },
   {
-    path: "/preview-post",
+    path: "/prevue-post",
     name: "BlogPreview",
     component: BlogPreview,
     meta: {
-      title: 'preview-post'
+      title: 'preview-post',
+      requiresAuth: true,
+      //requiresAdmin: true,
     }
   },
   {
-    path: "/post-detail",
+    path: "/post-detail/:blogid",
     name: "PostDetail",
     component: PostDetail,
     meta: {
-      title: 'post-detail'
+      title: 'post-detail',
+      requiresAuth: false,
+    }
+  },
+  {
+    path: "/edt-post/:blogid",
+    name: "EditPost",
+    component: EditPost,
+    meta: {
+      title: 'Edit Blog Post',
+      requiresAuth: true,
+      //requiresAdmin: true,
     }
   },
 ];
@@ -146,6 +178,16 @@ const router = new VueRouter({
 router.beforeEach((to,from,next) => {
   document.title = `${to.meta.title} | Finalstep`;
   next();
+});
+
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && store.state.isAdmin) {
+      console.log
+      next()
+  } else {
+      next()
+  }
 })
+
 
 export default router;
